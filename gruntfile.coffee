@@ -101,8 +101,29 @@ module.exports = (grunt) ->
           expand: true
           filter: 'isFile'
           cwd: 'src'
+          dest: 'temp/scripts'
+          src: 'templates/**/*.haml'
+          ext: '.js'
+        ]
+
+        options:
+          target: 'js'
+          language: 'coffee'
+          uglify: true
+          placement: 'amd'
+          customHtmlEscape: 'haml.escape'
+          customPreserve: 'haml.preserve'
+          customCleanValue: 'haml.clean'
+          dependencies:
+            'haml': 'lib/haml'
+
+      render:
+        files: [
+          expand: true
+          filter: 'isFile'
+          cwd: 'src'
           dest: 'temp'
-          src: '**/*.haml'
+          src: '*.haml'
           ext: '.html'
         ]
 
@@ -118,6 +139,7 @@ module.exports = (grunt) ->
         port: 5000 + portOffset
         hostname: hostname
         middleware: (connect, options) -> [
+          require('connect-url-rewrite') ['^[^.]*$ /']
           require('connect-livereload')()
           connect.static options.base
         ]
@@ -137,8 +159,6 @@ module.exports = (grunt) ->
       compile:
         dest: 'temp/styles/main.css'
         src: 'src/styles/main.scss'
-        options:
-          loadPath: path.join(path.resolve('.'), 'temp')
 
     # Watch
     # -----
@@ -276,6 +296,7 @@ module.exports = (grunt) ->
     'copy:static'
     'coffee:compile'
     'haml:compile'
+    'haml:render'
     'sass:compile'
     'connect:temp'
     'watch'
@@ -289,6 +310,7 @@ module.exports = (grunt) ->
     'copy:static'
     'coffee:compile'
     'haml:compile'
+    'haml:render'
     'sass:compile'
     'requirejs:compile'
     'copy:build'

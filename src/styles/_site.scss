@@ -1,3 +1,7 @@
+// Fonts
+// =====
+@import url(http://fonts.googleapis.com/css?family=Rokkitt:400,700);
+
 // Container
 // =========
 html {
@@ -12,4 +16,88 @@ body {
   height: 100%;
   background: $body-background;
   box-shadow: 0 4px 6px 0 $body-shadow inset;
+  font-family: 'Rokkitt',sans-serif;
+  overflow: hidden;
+}
+
+// Container
+// =========
+.container {
+  width: 100%;
+  height: 100%;
+  display: table;
+}
+
+// Panel
+// =====
+.panel {
+  position: relative;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+
+// Timestamp
+// =========
+.timestamp {
+  position: absolute;
+  bottom: 35px;
+  left: 35px;
+  text-shadow: 0px 0px 1px #4d4d4d;
+  color: #222;
+  font-size: 16pt;
+}
+
+// ID
+// ==
+.id {
+  position: absolute;
+  bottom: 35px;
+  right: 35px;
+  text-shadow: 0px 0px 1px #4d4d4d;
+  color: #222;
+  font-size: 16pt;
+}
+
+// Site
+// ====
+#site {
+  header {
+    // display: table-row;
+    position: relative;
+    background: $header-background;
+    height: 18%;
+    .title {
+      position: relative;
+      left: 40px;
+      top: 40px;
+      margin: 0; padding: 0;
+      text-shadow: 0px 1px 1px #4d4d4d;
+      text-decoration: none;
+      font-size: 30pt;
+      color: #333;
+      &:hover {
+        color: $highlight-color;
+      }
+    }
+    border-bottom: 1px solid #999;
+    box-shadow: 0 4px 2px 0 $body-shadow;
+    nav {
+      position: relative;
+      left: 280px;
+      a {
+        color: #333;
+        text-decoration: none;
+        font-size: 24pt;
+        margin: 0 20px;
+        &:hover {
+          color: $highlight-color;
+        }
+      }
+    }
+  }
+  .content {
+    display: table;
+    height: 80%;
+  }
 }
