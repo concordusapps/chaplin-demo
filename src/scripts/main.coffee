@@ -24,4 +24,10 @@ require.config
     backbone: '../bower_components/exoskeleton/exoskeleton'
 
 require [ 'application', 'routes' ], (Application, routes) ->
-  application = new Application {routes}
+  application = new Application
+    routes: routes
+
+    # Overriden here to change the controller suffix (which defaults to
+    # '_controller' as we have filenames like 'controllers/index' and not
+    # 'controllers/index_controller').
+    controllerSuffix: ''
